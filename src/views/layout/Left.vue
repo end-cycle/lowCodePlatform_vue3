@@ -96,7 +96,6 @@ export default {
       } else {
         this.$refs.menuBtn.style.backgroundPosition = "0 0px";
         if (this.isFixed) this.fixedMemu(true);
-        console.log("close", this.isFixed);
       }
     },
     closeMenu() {
@@ -119,7 +118,6 @@ export default {
     },
     fixedMemu(closeBtn = false) {
       //左侧浮窗固定控制
-      console.log(this.isFixed);
       if (closeBtn) {
         this.$refs.left.style.width = "40px";
         return;
