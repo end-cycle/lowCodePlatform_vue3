@@ -6,7 +6,7 @@
         <span class="Tleft">组件库</span>
         <span class="Tright">
           <span class="closeBtn" @click="closeMenu"></span>
-          <span class="topBtn" @click="fixedMemu" ref="topBtn"></span>
+          <span class="topBtn" @click="changeFixed" ref="topBtn"></span>
         </span>
       </div>
       <div class="searchBox">
@@ -34,7 +34,7 @@
           <img
             class="img-show"
             draggable="false"
-            :src="require('@/'+item.icon)"
+            :src="require('@/' + item.icon)"
             alt="图片失踪"
           />
           <div class="com-name">{{ item.name }}</div>
@@ -53,7 +53,7 @@
           <img
             class="img-show"
             draggable="false"
-            :src="require('@/'+item.icon)"
+            :src="require('@/' + item.icon)"
             alt="图片失踪"
           />
           <div class="com-name">{{ item.name }}</div>
@@ -71,7 +71,7 @@ export default {
       menu,
       searchRes: [],
       isShow: false,
-      isFixed: false,
+      isFixed: true,
       searchKey: "",
     };
   },
@@ -80,8 +80,8 @@ export default {
       this.$bus.emit("updateCurrentCom", {});
       e.dataTransfer.setData("attr", e.target.id);
       this.$bus.emit("clearFocus");
-      e.dataTransfer.setData('comOffsetY',e.offsetY)//8.18hp修改预先存储鼠标相对组件位置
-      e.dataTransfer.setData('comOffsetX',e.offsetX)
+      e.dataTransfer.setData("comOffsetY", e.offsetY); //8.18hp修改预先存储鼠标相对组件位置
+      e.dataTransfer.setData("comOffsetX", e.offsetX);
     },
     dragleave() {
       //当组件拖拽出去后隐藏左侧浮窗
@@ -92,15 +92,17 @@ export default {
       this.isShow = !this.isShow;
       if (this.isShow) {
         this.$refs.menuBtn.style.backgroundPosition = "-24px 0";
+        if (this.isFixed) this.fixedMemu();
       } else {
         this.$refs.menuBtn.style.backgroundPosition = "0 0px";
-        if (this.isFixed) this.fixedMemu();
+        if (this.isFixed) this.fixedMemu(true);
+        console.log("close", this.isFixed);
       }
     },
     closeMenu() {
       this.isShow = false;
       this.$refs.menuBtn.style.backgroundPosition = "0 0px";
-      if (this.isFixed) this.fixedMemu();
+      if (this.isFixed) this.changeFixed();
     },
     openMenu() {
       this.isShow = true;
@@ -109,18 +111,26 @@ export default {
     searchCom(key) {
       //搜索组件功能
       this.searchRes[0] = this.menu[0].filter((v) => v.name.includes(key));
-      this.searchRes[1] = this.menu[1].filter((v) => v.name.includes(key))//8.18hp修改增加复合组件
+      this.searchRes[1] = this.menu[1].filter((v) => v.name.includes(key)); //8.18hp修改增加复合组件
     },
-    fixedMemu() {
-      //左侧浮窗固定控制
+    changeFixed() {
       this.isFixed = !this.isFixed;
+      this.fixedMemu();
+    },
+    fixedMemu(closeBtn = false) {
+      //左侧浮窗固定控制
+      console.log(this.isFixed);
+      if (closeBtn) {
+        this.$refs.left.style.width = "40px";
+        return;
+      }
       if (this.isFixed) {
-        this.$refs.topBtn.style.backgroundPosition = "-38px 0px" //8.18hp修改图标大小
+        this.$refs.topBtn.style.backgroundPosition = "-38px 0px";
         this.$refs.menu.style.boxShadow = "none";
         this.$refs.menu.style.left = "40px";
         this.$refs.left.style.width = "340px";
       } else {
-        this.$refs.topBtn.style.backgroundPosition = "-18px -19px" //8.18hp修改图标大小
+        this.$refs.topBtn.style.backgroundPosition = "-18px -19px";
         this.$refs.menu.style.boxShadow =
           "5px 0 5px -5px rgba(18, 21, 38, 0.3)";
         this.$refs.menu.style.left = "41px";
@@ -134,7 +144,7 @@ export default {
   },
   watch: {
     searchKey(newVal) {
-      //監聽搜索框
+      //监听搜索框
       this.searchCom(newVal);
     },
   },
@@ -220,17 +230,16 @@ export default {
   float: right;
 }
 
- .Tright span {/*8.18hp修改更改图标大小 (以下)*/
+.Tright span {
   float: right;
   margin-top: 9px;
   margin-right: 9px;
   height: 20px;
   width: 20px;
   background: center no-repeat;
-  background-image: url('../../assets/left_spring.png');
+  background-image: url("../../assets/left_spring.png");
   background-size: 60px 41px;
 }
-
 
 .Tright .topBtn {
   cursor: pointer;
@@ -240,7 +249,7 @@ export default {
 .Tright .closeBtn {
   cursor: pointer;
   background-position: -0px -19px;
-}/*8.18hp修改更改图标大小 (以上)*/
+}
 
 .searchBox {
   height: 84px;
