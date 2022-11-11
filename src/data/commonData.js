@@ -81,7 +81,7 @@ export default {
         textStyle: {
             textDecoration: 'none',
             fontSize: "14px",
-            lineHeight: "2px",
+            lineHeight: "18px",
             fontWeight: "400px",
             opacity: 1,
             textAlign: 'left',
