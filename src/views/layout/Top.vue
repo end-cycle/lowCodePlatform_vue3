@@ -6,23 +6,23 @@
     </div>
     <div class="top-center">
       <div class="top-center-pc" :class="{ active: isPC }" @click="toPC">
-        <img :src="require('@/'+'assets/pc.png')" class="" />
+        <img :src="require('@/' + 'assets/pc.png')" class="" />
       </div>
       <div class="top-center-phone" :class="{ active: !isPC }" @click="toPhone">
-        <img :src="require('@/'+'assets/phone.png')" />
+        <img :src="require('@/' + 'assets/phone.png')" />
       </div>
     </div>
     <div class="top-right">
       <div class="top-right-operator">
         <img
-          :src="require('@/'+'assets/ctrl-z.png')"
+          :src="require('@/' + 'assets/ctrl-z.png')"
           class="show"
           alt=""
           :style="centerStep !== 1 ? '' : 'opacity:0.2;'"
           @click="backOff"
         />
         <img
-          :src="require('@/'+'assets/ctrl-z.png')"
+          :src="require('@/' + 'assets/ctrl-z.png')"
           class="show restore"
           :style="hasMore() ? '' : 'opacity:0.2;'"
           @click="forward"
@@ -42,15 +42,19 @@
           size="small"
           @click="absolute = !absolute"
           :type="absolute ? 'info' : ''"
-          >{{ absolute ? '绝对定位' : '静态定位' }}</el-button
+          >{{ absolute ? "绝对定位" : "静态定位" }}</el-button
         >
         <el-button size="small" @click="save">保 存</el-button>
-        <el-button size="small" @click="$refs.file.click()">导入 Json</el-button>
+        <el-button size="small" @click="$refs.file.click()"
+          >导入 Json</el-button
+        >
         <el-button size="small" @click="reset" type="primary">重 置</el-button>
         <el-button size="small" @click="switchState" type="primary">{{
-          edit ? '预览' : '编辑'
+          edit ? "预览" : "编辑"
         }}</el-button>
-        <el-button size="small" @click="release" type="primary">发 布</el-button>
+        <el-button size="small" @click="release" type="primary"
+          >发 布</el-button
+        >
       </div>
       <!-- 隐藏起来的json输入 -->
       <input
@@ -67,7 +71,6 @@
 
 
 <script>
-
 export default {
   data() {
     return {
@@ -75,93 +78,103 @@ export default {
       edit: true,
       centerStep: 1,
       hasSelectEvent: false,
-      absolute: false
-    }
+      absolute: false,
+    };
   },
   mounted() {
+    let self = this;
+    this.$nextTick(function () {
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && self.edit === false) {
+          console.log("触发了", self.edit);
+          self.$bus.emit("switchState");
+        }
+      });
+    });
     //获取画布区的阶段
-    this.$bus.on('getStep', (step) => {
-      this.centerStep = step
-    })
+    this.$bus.on("getStep", (step) => {
+      this.centerStep = step;
+    });
     // 监听选中事件
-    this.$bus.on('selectEvent', (index) => {
-      this.hasSelectEvent = index === -1 ? false : true
-    })
-    this.$bus.on('switchState', () => {
-      this.edit = !this.edit
-    })
+    this.$bus.on("selectEvent", (index) => {
+      this.hasSelectEvent = index === -1 ? false : true;
+    });
+    this.$bus.on("switchState", () => {
+      this.edit = !this.edit;
+      console.log("switchState", this.edit);
+    });
   },
   methods: {
     //判断是否还有下一阶段
     hasMore() {
       if (sessionStorage.getItem(String(this.centerStep + 1)) == null) {
-        return false
+        return false;
       } else {
-        return true
+        return true;
       }
     },
-    reset(){
-      this.$bus.emit('reset')
+    reset() {
+      this.$bus.emit("reset");
     },
-    save(){
-      this.$bus.emit('save')
+    save() {
+      this.$bus.emit("save");
     },
     offDelete() {
-      this.hasSelectEvent = false
+      this.hasSelectEvent = false;
     },
     deleteEvent() {
-      this.$bus.emit('showDeleteDialog')
+      this.$bus.emit("showDeleteDialog");
     },
     backOff() {
-      this.$bus.emit('backOff')
+      this.$bus.emit("backOff");
     },
     forward() {
-      this.$bus.emit('forward')
+      this.$bus.emit("forward");
     },
     toPC() {
-      this.isPC = true
-      this.$bus.emit('toPc')
+      this.isPC = true;
+      this.$bus.emit("toPc");
     },
     toPhone() {
-      this.isPC = false
-      this.$bus.emit('toPhone')
+      this.isPC = false;
+      this.$bus.emit("toPhone");
     },
     // 切换编辑预览状态
     switchState() {
-      this.$bus.emit('switchState')
+      this.$bus.emit("switchState");
     },
     inputJsonEvent(data) {
-      this.$bus.emit('inputJson', data)
+      this.$bus.emit("inputJson", data);
     },
     // 导入json
     importJSON() {
-      const file = document.getElementById('file').files[0]
-      const reader = new FileReader()
-      reader.readAsText(file)
-      let _this = this
+      const file = document.getElementById("file").files[0];
+      const reader = new FileReader();
+      reader.readAsText(file);
+      let _this = this;
       reader.onload = function () {
         // this.result为读取到的json字符串，需转成json对象
-        let ImportJSON = JSON.parse(this.result)
+        let ImportJSON = JSON.parse(this.result);
         // 检测是否导入成功
         // console.log(ImportJSON, '-----------------导入成功')
         // 导入JSON数据
-        _this.inputJsonEvent(ImportJSON)
-      }
+        _this.inputJsonEvent(ImportJSON);
+      };
     },
     // 发布页面
     release() {
-      this.$bus.emit("release")
-    }
+      this.$bus.emit("release");
+    },
   },
   watch: {
     absolute: {
       immediate: true,
       handler(newVal) {
-        this.$bus.emit('switchPattern', newVal)
-      }
-    }
-  }
-}
+        this.$bus.emit("switchPattern", newVal);
+      },
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
