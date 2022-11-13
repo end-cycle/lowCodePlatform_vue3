@@ -1,7 +1,11 @@
 <template>
   <div class="RealTimeView">
-    <el-dialog v-model="releaseVisiable" :show-close="false" width="850px" top="8vh">
-      
+    <el-dialog
+      v-model="releaseVisiable"
+      :show-close="false"
+      width="850px"
+      top="8vh"
+    >
       <iframe
         v-if="releaseVisiable"
         ref="iframe"
@@ -20,27 +24,27 @@
 
 <script>
 export default {
-  emits:['update:releaseVisiable'],
-  props: ['releaseVisiable','views'],
+  // emits:['update:releaseVisiable'],
+  props: ["releaseVisiable", "views"],
   data() {
     return {
       loading: true,
-      origin:'http://lc.gql.fit'
-    }
+      origin: "http://lc.gql.fit",
+    };
   },
-  beforeCreate(){
-    this.origin = window.location.origin
+  beforeCreate() {
+    this.origin = window.location.origin;
   },
   methods: {
     load() {
-      this.loading = false
-    //   this.$refs["iframe"].contentWindow.postMessage(this.val, "http://localhost:8080");
+      this.loading = false;
+      //   this.$refs["iframe"].contentWindow.postMessage(this.val, "http://localhost:8080");
     },
-    unVisiable(){
-        this.$bus.emit("switchState")
-    }
+    unVisiable() {
+      this.$bus.emit("switchState");
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
