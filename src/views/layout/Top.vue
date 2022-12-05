@@ -86,7 +86,6 @@ export default {
     this.$nextTick(function () {
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && self.edit === false) {
-          console.log("触发了", self.edit);
           self.$bus.emit("switchState");
         }
       });
@@ -101,7 +100,6 @@ export default {
     });
     this.$bus.on("switchState", () => {
       this.edit = !this.edit;
-      console.log("switchState", this.edit);
     });
   },
   methods: {
