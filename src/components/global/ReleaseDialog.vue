@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       loading: true,
-      origin:'http://lc.gql.fit'
+      origin:'http://localhost:8080'
     }
   },
   beforeCreate(){
