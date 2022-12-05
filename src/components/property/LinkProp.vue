@@ -1,8 +1,8 @@
 <template>
-   <div>
+  <div>
     <div class='lineBox border smaller'>
-      <div class="label" >链接</div>
-      <div class="srcline"><span>https://</span>
+      <div class="label">链接</div>
+      <div class="srcline"><span>https:// + &nbsp;</span>
         <input v-model="views.link">
       </div>
     </div>
@@ -22,10 +22,10 @@ export default {
     }
   },
   methods: {
-    
   }
 }
 </script>
 
 <style>
+
 </style>
