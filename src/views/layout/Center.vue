@@ -226,15 +226,17 @@ export default {
   },
   computed: {
     // watch获取不到复杂变化的oldvalue，所以用计算属性调整
-    viewsCopy() {
-      return JSON.parse(JSON.stringify(this.views));
-    },
+    // viewsCopy() {
+    //   console.log(this.views);
+    //   return JSON.parse(JSON.stringify(this.views));
+    // },
   },
   watch: {
-    viewsCopy: {
+    views: {
       deep: true,
       immediate: true,
       handler(newValue, oldVal) {
+        // console.log(newValue, oldVal);
         if (!newValue && !oldVal) return;
         if (this.judgeTwoValueIsEqual(newValue, oldVal)) return;
         if (this.step == 1) {
