@@ -1,19 +1,8 @@
 <template>
   <div class="RealTimeView">
-    <el-dialog
-      v-model="releaseVisiable"
-      :show-close="false"
-      width="850px"
-      top="8vh"
-    >
-      <iframe
-        v-if="releaseVisiable"
-        ref="iframe"
-        class="screen"
-        :scrolling="false"
-        :src="origin + '/release/1'"
-        @load="load"
-      ></iframe>
+    <el-dialog v-model="releaseVisiable" :show-close="false" width="850px" top="8vh">
+      <iframe v-if="releaseVisiable" ref="iframe" class="screen" :scrolling="false" :src="origin + '/release/editViews'"
+        @load="load"></iframe>
       <template #footer>
         <el-button @click.stop="unVisiable" size="small">关闭</el-button>
       </template>
@@ -38,7 +27,7 @@ export default {
   methods: {
     load() {
       this.loading = false;
-      //   this.$refs["iframe"].contentWindow.postMessage(this.val, "http://localhost:8080");
+      // this.$refs["iframe"].contentWindow.postMessage(this.val, "http://localhost:8080");
     },
     unVisiable() {
       this.$bus.emit("switchState");
@@ -50,13 +39,18 @@ export default {
 <style lang="scss" scoped>
 .RealTimeView {
   .screen {
-    width: 800px /*no*/;
-    height: 470px /*no*/;
+    width: 800px
+      /*no*/
+    ;
+    height: 470px
+      /*no*/
+    ;
     border: 0;
 
     // 隐藏滚动条
     &::-webkit-scrollbar {
-      display: none; /* Chrome Safari */
+      display: none;
+      /* Chrome Safari */
     }
   }
 }

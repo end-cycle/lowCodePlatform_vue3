@@ -1,36 +1,13 @@
 <template>
-  <div
-    class="center"
-    @click="showMainBtn"
-    :class="{ phoneSize: isPhone, mainBtn: showButton && edit }"
-    @dragover="dropover"
-    @drop.stop="drop"
-  >
+  <div class="center" @click="showMainBtn" :class="{ phoneSize: isPhone, mainBtn: showButton && edit }"
+    @dragover="dropover" @drop.stop="drop">
     <!-- 展示中间按钮 -->
-    <CenterButton
-      style="z-index: 100"
-      @click.stop="addFlexBox"
-      v-if="showButton && edit"
-    ></CenterButton>
+    <CenterButton style="z-index: 100" @click.stop="addFlexBox" v-if="showButton && edit"></CenterButton>
     <!-- 将需要读取的变量通通传递，只提供自定义事件修改变量 -->
-    <PowerfulDynamicDraw
-      ref="page"
-      :centerCom="centerCom"
-      :currentCom="currentCom"
-      :edit="edit"
-      :views="views"
-      :currentIndex="currentIndex"
-      class="DynamicDraw"
-      @selectEvent="select"
-      @dragstartEvent="dragstart"
-      :pattern="pattern"
-      contenteditable="true"
-    ></PowerfulDynamicDraw>
-    <DeleteDialog
-      v-model:dialogVisible="dialogVisible"
-      :edit="edit"
-      @delComEvent="delCom"
-    />
+    <PowerfulDynamicDraw ref="page" :centerCom="centerCom" :currentCom="currentCom" :edit="edit" :views="views"
+      :currentIndex="currentIndex" class="DynamicDraw" @selectEvent="select" @dragstartEvent="dragstart"
+      :pattern="pattern" contenteditable="true"></PowerfulDynamicDraw>
+    <DeleteDialog v-model:dialogVisible="dialogVisible" :edit="edit" @delComEvent="delCom" />
     <ReleaseDialog v-model:releaseVisiable="releaseVisiable" :views="views" />
     <ShowDialog v-model:sendVisiable="sendVisiable" :src="src" />
     <!-- <a class="target" ref="link" href="" target="_blank" v-show="true"></a> -->
@@ -324,6 +301,7 @@ export default {
   z-index: 2;
   height: calc(100% - 45px);
 }
+
 .pcSize {
   width: 100%;
 }
