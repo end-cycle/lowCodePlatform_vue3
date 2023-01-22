@@ -164,6 +164,7 @@ function offCenter(that) {
 function forward(that) {
   //前进
   that.$bus.on("forward", () => {
+    console.log("getItem", that.step);
     that.views = JSON.parse(sessionStorage.getItem(String(that.step)))
   })
 }

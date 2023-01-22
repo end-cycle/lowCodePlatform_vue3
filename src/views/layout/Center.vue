@@ -17,7 +17,7 @@
 <script>
 import "@/assets/css/componentBox.scss";
 import { nanoid } from "nanoid";
-import commonData from "@/data/commonData.js"; //改动
+import commonData from "@/data/commonData.js";
 import { dataFormat } from "@/utils/dataFormat.js";
 import { deepClone } from "@/utils/deepClone.js";
 import FileSaver from "file-saver";
@@ -226,13 +226,12 @@ export default {
   },
   computed: {
     // watch获取不到复杂变化的oldvalue，所以用计算属性调整
-    // viewsCopy() {
-    //   console.log(this.views);
-    //   return JSON.parse(JSON.stringify(this.views));
-    // },
+    viewsCopy() {
+      return JSON.parse(JSON.stringify(this.views));
+    },
   },
   watch: {
-    views: {
+    viewsCopy: {
       deep: true,
       immediate: true,
       handler(newValue, oldVal) {
@@ -241,8 +240,10 @@ export default {
         if (this.judgeTwoValueIsEqual(newValue, oldVal)) return;
         if (this.step == 1) {
           //当为初始状态时
+          console.log("setItem first", this.step);
           sessionStorage.setItem(String(this.step), JSON.stringify([newValue]));
         } else {
+          console.log("setItem", this.step);
           sessionStorage.setItem(String(this.step), JSON.stringify(newValue));
         }
         //阶段+1

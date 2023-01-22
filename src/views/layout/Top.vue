@@ -14,57 +14,27 @@
     </div>
     <div class="top-right">
       <div class="top-right-operator">
-        <img
-          :src="require('@/' + 'assets/ctrl-z.png')"
-          class="show"
-          alt=""
-          :style="centerStep !== 1 ? '' : 'opacity:0.2;'"
-          @click="backOff"
-        />
-        <img
-          :src="require('@/' + 'assets/ctrl-z.png')"
-          class="show restore"
-          :style="hasMore() ? '' : 'opacity:0.2;'"
-          @click="forward"
-          alt=""
-        />
+        <img :src="require('@/' + 'assets/ctrl-z.png')" class="show" alt=""
+          :style="centerStep !== 1 ? '' : 'opacity:0.2;'" @click="backOff" />
+        <img :src="require('@/' + 'assets/ctrl-z.png')" class="show restore" :style="hasMore() ? '' : 'opacity:0.2;'"
+          @click="forward" alt="" />
       </div>
       <div class="top-right-function">
-        <el-button
-          size="small"
-          type="danger"
-          v-if="hasSelectEvent"
-          @click="deleteEvent"
-          >删除</el-button
-        >
-        <el-button
-          border
-          size="small"
-          @click="absolute = !absolute"
-          :type="absolute ? 'info' : ''"
-          >{{ absolute ? "绝对定位" : "静态定位" }}</el-button
-        >
+        <el-button size="small" type="danger" v-if="hasSelectEvent" @click="deleteEvent">删除</el-button>
+        <el-button border size="small" @click="absolute = !absolute" :type="absolute ? 'info' : ''">{{
+          absolute? "绝对定位"
+            : "静态定位"
+        }}</el-button>
         <el-button size="small" @click="save">保 存</el-button>
-        <el-button size="small" @click="$refs.file.click()"
-          >导入 Json</el-button
-        >
+        <el-button size="small" @click="$refs.file.click()">导入 Json</el-button>
         <el-button size="small" @click="reset" type="primary">重 置</el-button>
         <el-button size="small" @click="switchState" type="primary">{{
-          edit ? "预览" : "编辑"
+          edit? "预览": "编辑"
         }}</el-button>
-        <el-button size="small" @click="release" type="primary"
-          >发 布</el-button
-        >
+        <el-button size="small" @click="release" type="primary">发 布</el-button>
       </div>
       <!-- 隐藏起来的json输入 -->
-      <input
-        type="file"
-        ref="file"
-        id="file"
-        accept=".json"
-        @change="importJSON"
-        style="display: none"
-      />
+      <input type="file" ref="file" id="file" accept=".json" @change="importJSON" style="display: none" />
     </div>
   </div>
 </template>
@@ -106,6 +76,7 @@ export default {
     //判断是否还有下一阶段
     hasMore() {
       if (sessionStorage.getItem(String(this.centerStep + 1)) == null) {
+        console.log("hasMore", sessionStorage.getItem(String(this.centerStep + 1)));
         return false;
       } else {
         return true;
@@ -127,7 +98,9 @@ export default {
       this.$bus.emit("backOff");
     },
     forward() {
-      this.$bus.emit("forward");
+      if (sessionStorage.getItem(String(this.centerStep + 1)) !== null) {
+        this.$bus.emit("forward");
+      }
     },
     toPC() {
       this.isPC = true;
@@ -190,21 +163,25 @@ export default {
   position: sticky;
   z-index: 101;
   top: 0px;
+
   &-left-logo {
     width: 130.8px;
     height: 36px;
     opacity: 0;
   }
+
   &-center {
     display: flex;
     width: 67px;
     height: 30px;
     justify-content: space-between;
     align-items: center;
+
     &-pc img {
       width: 20px;
       height: 25px;
     }
+
     &-pc {
       width: 35px;
       height: 35px;
@@ -213,6 +190,7 @@ export default {
       align-items: center;
       justify-content: center;
     }
+
     &-phone {
       width: 35px;
       height: 35px;
@@ -221,16 +199,19 @@ export default {
       justify-content: center;
       align-items: center;
     }
+
     &-phone img {
       width: 18px;
       height: 20px;
       opacity: 0.65;
     }
   }
+
   &-right {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     &-operator {
       display: flex;
       width: 60px;
@@ -238,10 +219,12 @@ export default {
       align-items: center;
       justify-content: space-around;
     }
+
     &-operator img {
       width: 20px;
       height: 20px;
     }
+
     &-function {
       display: flex;
       align-items: center;
@@ -251,6 +234,7 @@ export default {
     }
   }
 }
+
 .active {
   background: #f2f2f2;
 }
