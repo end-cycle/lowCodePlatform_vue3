@@ -10,28 +10,29 @@
       <el-input class="input" v-model="views.src"></el-input>
     </div>
     <!-- 下面代码未定义的函数被我删了，不然会有bug -->
-    <el-upload :on-change="change" action="http://47.95.23.74:3001/upload" :on-success="success" :show-file-list="false" :before-upload="beforeUpload" style="margin-top:5%">
-      <el-button size="small" type="primary" >点击上传</el-button>
-  </el-upload>
+    <el-upload :on-change="change" action="http://127.0.0.1:3001/upload" :on-success="success" :show-file-list="false"
+      :before-upload="beforeUpload" style="margin-top:5%">
+      <el-button size="small" type="primary">点击上传</el-button>
+    </el-upload>
   </div>
 </template>
 
 <script>
 
 export default {
-    props:["views"],
-    data() {
-        return {
-            
-        }
+  props: ["views"],
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    success(response) {
+      this.views.src = 'http://127.0.0.1:3001/' + response.path.slice(7)
     },
-    methods:{
-       success(response) {
-          this.views.src = 'http://47.95.23.74:3001/' + response.path.slice(7)
-        },
-        change(){
-          console.log("修改=====");
-        },
+    change() {
+      console.log("修改=====");
+    },
     beforeUpload(file) {
       console.log(file);
       const isSvg = file.type === 'img/svg';
@@ -44,22 +45,23 @@ export default {
       }
       return !isSvg && isLt30M;
     },
-    }
+  }
 };
 </script>
 
 <style scoped>
-
 .input {
   width: 70%;
   float: right;
 }
+
 .label {
-  width:30%;
+  width: 30%;
   display: flex;
   justify-content: left;
   align-items: center;
 }
+
 .module {
   width: 280px;
   margin-top: 3px;
@@ -72,5 +74,4 @@ export default {
   text-indent: 1em;
   line-height: 36px
 }
-
 </style>
