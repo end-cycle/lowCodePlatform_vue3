@@ -10,7 +10,7 @@ export default {
         let form = new FormData()
         form.append('id', id)
         this.$axios({
-            url: 'http://127.0.0.1:3001/user/getOne',
+            url: 'http://82.156.7.135:3001/user/getOne',
             method: 'post',
             data: form
         }).then(res => {

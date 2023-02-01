@@ -14,13 +14,13 @@
       <div class="label">链接</div>
       <input v-model="views.src">
     </div>
-    <el-upload action="http://127.0.0.1:3001/upload" :on-success="success" :show-file-list="false"
+    <el-upload action="http://82.156.7.135:3001/upload" :on-success="success" :show-file-list="false"
       :before-upload="beforeUpload">
       <el-button size="small" type="primary">点击上传</el-button>
     </el-upload>
     <div class='lineBox '>
       <div class="label">封面</div>
-      <el-upload class="avatar-uploader" action="http://127.0.0.1:3001/upload" :show-file-list="false"
+      <el-upload class="avatar-uploader" action="http://82.156.7.135:3001/upload" :show-file-list="false"
         :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
         <img v-if="views.poster" :src="views.poster" class="avatar">
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -46,11 +46,11 @@ export default {
   },
   methods: {
     success(response) {
-      this.views.src = 'http://127.0.0.1:3001/' + response.path.slice(7)
+      this.views.src = 'http://82.156.7.135:3001/' + response.path.slice(7)
       this.$message.success("上传成功！")
     },
     handleAvatarSuccess(response) {
-      this.views.poster = 'http://127.0.0.1:3001/' + response.path.slice(7)
+      this.views.poster = 'http://82.156.7.135:3001/' + response.path.slice(7)
       this.$message.success("上传成功！")
     },
     beforeUpload(file) {

@@ -10,8 +10,8 @@
       <el-input class="input" v-model="views.src"></el-input>
     </div>
     <!-- 下面代码未定义的函数被我删了，不然会有bug -->
-    <el-upload :on-change="change" action="http://127.0.0.1:3001/upload" :on-success="success" :show-file-list="false"
-      :before-upload="beforeUpload" style="margin-top:5%">
+    <el-upload :on-change="change" action="http://82.156.7.135:3001/upload" :on-success="success"
+      :show-file-list="false" :before-upload="beforeUpload" style="margin-top:5%">
       <el-button size="small" type="primary">点击上传</el-button>
     </el-upload>
   </div>
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     success(response) {
-      this.views.src = 'http://127.0.0.1:3001/' + response.path.slice(7)
+      this.views.src = 'http://82.156.7.135:3001/' + response.path.slice(7)
     },
     change() {
       console.log("修改=====");
