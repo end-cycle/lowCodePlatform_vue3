@@ -37,6 +37,7 @@ template {
   width: 100%;
   height: 100%;
 }
+
 .main {
   width: 100%;
   height: calc(100% - 41px);
@@ -44,10 +45,12 @@ template {
   position: relative;
   top: 41px;
 }
+
 .container {
   width: 100%;
   height: 100%;
 }
+
 .canvas {
   margin: 0 auto;
   width: 100%;
@@ -57,6 +60,7 @@ template {
   flex-direction: column;
   overflow-y: scroll;
 }
+
 .canvas::-webkit-scrollbar {
   display: none;
 }

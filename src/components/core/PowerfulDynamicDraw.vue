@@ -1,28 +1,13 @@
 <template>
   <div>
-    <component
-      class="block tpl-container"
-      v-for="(view, index) in views"
-      :key="view.id"
-      @dragstart.stop="dragstart(view, index, $event)"
-      :style="{ width: view.style.width, height: view.style.height }"
-      :comContent="view.comContent"
-      :views="view"
-      :draggable="edit"
-      :class="{
+    <component class="block tpl-container" v-for="(view, index) in views" :key="view.id"
+      @dragstart.stop="dragstart(view, index, $event)" :style="{ width: view.style.width, height: view.style.height }"
+      :comContent="view.comContent" :views="view" :draggable="edit" :class="{
         componenthover: edit,
         selected: index == currentIndex && edit && view == currentCom,
-      }"
-      :myStyle="view.style"
-      :is="view.component"
-      :edit="edit"
-      :centerCom="centerCom"
-      :pattern="pattern"
-      :currentCom="currentCom"
-      contenteditable="false"
-      @click.stop="select(index, view)"
-      @dragenter.stop="dragenterLight($event, view)"
-    >
+      }" :myStyle="view.style" :is="view.component" :edit="edit" :centerCom="centerCom" :pattern="pattern"
+      :currentCom="currentCom" contenteditable="false" @click.stop="select(index, view)"
+      @dragenter.stop="dragenterLight($event, view)">
     </component>
   </div>
 </template>

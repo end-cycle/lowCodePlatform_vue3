@@ -1,4 +1,4 @@
-function BasicHtml(bodyStr,styleStr){
+function BasicHtml(bodyStr, styleStr) {
     return `<!DOCTYPE html>
     <html lang="zh">
     <head>
@@ -91,10 +91,10 @@ function BasicHtml(bodyStr,styleStr){
         ${bodyStr}
     </body>
     </html>`
-} 
+}
 
 
-function BasicVue(bodyStr,styleStr){
+function BasicVue(bodyStr, styleStr) {
     return `<template>
     ${bodyStr}
     </template>

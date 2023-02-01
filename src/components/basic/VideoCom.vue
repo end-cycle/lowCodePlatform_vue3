@@ -1,7 +1,7 @@
 <template>
   <div :style="views.style">
-    <video id="video" ref="video" :poster="views.poster" :style="views.videoStyle"  class="video-js vjs-default-skin vjs-big-play-centered" 
-      :src="videoSrc" :controls="views.controls">
+    <video id="video" ref="video" :poster="views.poster" :style="views.videoStyle"
+      class="video-js vjs-default-skin vjs-big-play-centered" :src="videoSrc" :controls="views.controls">
       <source class="vjs-poster" :src="videoSrc" />
     </video>
   </div>
@@ -15,15 +15,15 @@ export default {
     return {
       player: null, // 用来存储当前 videoS
       videoSrc: '',
-      posterSrc:'',
-      num : ''
+      posterSrc: '',
+      num: ''
     };
   },
   mounted() {
     // 渲染视频
     // this.player = this.$video(this.$refs.video);
     // let videoDom = document.getElementById('video')
-    
+
   },
   computed: {
 
@@ -50,11 +50,12 @@ export default {
 </script>
 
 <style scoped>
-:root{
-  --width:300px;
-  --height:200px;
-  --posterUrl:url("http://localhost:3001/");
+:root {
+  --width: 300px;
+  --height: 200px;
+  --posterUrl: url("http://localhost:3001/");
 }
+
 .video-js .vjs-big-play-button {
   font-size: 2.5em !important;
   line-height: 2.3em !important;
@@ -79,7 +80,7 @@ export default {
   display: none !important;
 }
 
-.vjs-poster{
+.vjs-poster {
   background-image: var(--posterUrl);
 }
 </style>

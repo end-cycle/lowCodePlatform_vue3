@@ -2,7 +2,8 @@
 
     <div>
         <div class='module'>布局</div>
-        <component v-for="(data, index) in datas[0]" :key="'Frist' + index" :is="data.flag" :datas="data" :views="views">
+        <component v-for="(data, index) in datas[0]" :key="'Frist' + index" :is="data.flag" :datas="data"
+            :views="views">
         </component>
         <div class='right-line'>
             <div class='label'>边距</div>
@@ -30,7 +31,8 @@
         </div>
         <!--8.18 hp更改(以上) -->
         <div class='module'>边框</div>
-        <component v-for="(data, index) in datas[1]" :key="'scond' + index" :is="data.flag" :datas="data" :views="views">
+        <component v-for="(data, index) in datas[1]" :key="'scond' + index" :is="data.flag" :datas="data"
+            :views="views">
         </component>
     </div>
 </template>

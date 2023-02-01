@@ -11,51 +11,24 @@
       </div>
       <div class="searchBox">
         <div class="searchZoom">
-          <input
-            type="text"
-            id="sbox"
-            placeholder="搜索组件"
-            v-model="searchKey"
-          />
+          <input type="text" id="sbox" placeholder="搜索组件" v-model="searchKey" />
           <!-- hp更改，搜索方式 -->
           <span class="searchBtn"></span>
         </div>
       </div>
       <div class="eleSlot"><span>基础组件</span></div>
       <div class="baseEleBox">
-        <div
-          v-for="item in searchRes[0]"
-          draggable="true"
-          @dragstart="dragstart"
-          :key="item.name"
-          class="comBox"
-          :id="item.flag"
-        >
-          <img
-            class="img-show"
-            draggable="false"
-            :src="require('@/' + item.icon)"
-            alt="图片失踪"
-          />
+        <div v-for="item in searchRes[0]" draggable="true" @dragstart="dragstart" :key="item.name" class="comBox"
+          :id="item.flag">
+          <img class="img-show" draggable="false" :src="require('@/' + item.icon)" alt="图片失踪" />
           <div class="com-name">{{ item.name }}</div>
         </div>
       </div>
       <div class="eleSlot"><span>复合组件</span></div>
       <div class="baseEleBox">
-        <div
-          v-for="item in searchRes[1]"
-          draggable="true"
-          @dragstart="dragstart"
-          :key="item.name"
-          class="comBox"
-          :id="item.flag"
-        >
-          <img
-            class="img-show"
-            draggable="false"
-            :src="require('@/' + item.icon)"
-            alt="图片失踪"
-          />
+        <div v-for="item in searchRes[1]" draggable="true" @dragstart="dragstart" :key="item.name" class="comBox"
+          :id="item.flag">
+          <img class="img-show" draggable="false" :src="require('@/' + item.icon)" alt="图片失踪" />
           <div class="com-name">{{ item.name }}</div>
         </div>
       </div>
@@ -191,10 +164,12 @@ export default {
   transition: box-shadow 0.2s;
   transition: display 20s;
 }
+
 .baseEleBox {
   display: flex;
   flex-wrap: wrap;
 }
+
 .comBox {
   height: 113px;
   width: calc(1 / 3 * 100%);

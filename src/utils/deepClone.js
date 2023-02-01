@@ -1,8 +1,8 @@
 export function deepClone(obj) {
-    if(!obj){
+    if (!obj) {
         return obj
     }
-    let result = typeof  obj.splice === "function" ? [] : {};
+    let result = typeof obj.splice === "function" ? [] : {};
     if (obj && typeof obj === 'object') {
         for (let key in obj) {
             if (obj[key] && typeof obj[key] === 'object') {

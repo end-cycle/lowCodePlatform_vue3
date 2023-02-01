@@ -1,12 +1,6 @@
 <template>
   <div class="card" :style="views.style">
-    <el-image
-      :src="views.src"
-      :style="views.imgStyle"
-      fit="cover"
-      :alt="views.alt"
-      style="cursor: pointer"
-    >
+    <el-image :src="views.src" :style="views.imgStyle" fit="cover" :alt="views.alt" style="cursor: pointer">
       <div slot="error" class="image-slot">
         <i class="el-icon-picture-outline"></i>
         <p style="color: white">点击上传图片</p>
@@ -27,7 +21,7 @@ export default {
     style: function (newVal) {
     },
   },
-  mounted() {},
+  mounted() { },
   methods: {
   },
 };

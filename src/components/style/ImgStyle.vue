@@ -36,21 +36,23 @@ export default {
   width: 60%;
   float: right;
 }
+
 .label {
   width: 40%;
   display: flex;
   justify-content: left;
   align-items: center;
 }
-.module{
-  width:100%;
-  height:26px;
-  margin-top:3px;
+
+.module {
+  width: 100%;
+  height: 26px;
+  margin-top: 3px;
   padding-bottom: 5px;
-  background-color:rgb(219, 226, 242);
-  text-align:left;
-  font-weight:700;
-  text-indent:1em;
-  line-height:36px
+  background-color: rgb(219, 226, 242);
+  text-align: left;
+  font-weight: 700;
+  text-indent: 1em;
+  line-height: 36px
 }
 </style>

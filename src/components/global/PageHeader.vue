@@ -2,7 +2,7 @@
  * @Author: end-cycle 2991205548@qq.com
  * @Date: 2022-09-05 11:46:30
  * @LastEditors: end-cycle 2991205548@qq.com
- * @LastEditTime: 2022-11-10 21:37:16
+ * @LastEditTime: 2023-02-02 00:23:16
  * @FilePath: \lowcode-plantform-master\src\components\global\PageHeader.vue
  * @Description: 
  * 
@@ -17,15 +17,9 @@
       </div>
       <div class="operate">
         <!-- <el-button size="small" type="primary" plain @click="exportHtml2">导出 HTML V2</el-button> -->
-        <el-button size="small" type="primary" plain @click="exportHtml"
-          >导出 HTML</el-button
-        >
-        <el-button size="small" type="primary" plain @click="exportVue"
-          >导出 Vue</el-button
-        >
-        <el-button size="small" type="primary" plain @click="sendSaveJsonEvent"
-          >导出 Json</el-button
-        >
+        <el-button size="small" type="primary" plain @click="exportHtml">导出 HTML</el-button>
+        <el-button size="small" type="primary" plain @click="exportVue">导出 Vue</el-button>
+        <el-button size="small" type="primary" plain @click="sendSaveJsonEvent">导出 Json</el-button>
       </div>
     </header>
   </div>

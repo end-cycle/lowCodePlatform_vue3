@@ -1,18 +1,15 @@
 <template>
-    <div :style="views.style" class="button-com" @click="btnClick">
-     <button :type="views.btnType" 
-     :style="[views.btnStyle,{'pointer-events':pointEvent}]"
-     @click="btnClick"
-     disabled
-     >
-      {{views.props.content}}
-     </button>
-    </div>
+  <div :style="views.style" class="button-com" @click="btnClick">
+    <button :type="views.btnType" :style="[views.btnStyle, { 'pointer-events': pointEvent }]" @click="btnClick"
+      disabled>
+      {{ views.props.content }}
+    </button>
+  </div>
 </template>
 
 <script>
 export default {
-  props: [ 'views','edit'],
+  props: ['views', 'edit'],
   data() {
     return {
       //...
@@ -25,22 +22,22 @@ export default {
       }
     }
   },
-  computed:{
-    pointEvent(edit){
-      return edit?'none':'initial'
-  }}
+  computed: {
+    pointEvent(edit) {
+      return edit ? 'none' : 'initial'
+    }
+  }
 }
 </script>
 
 <style scoped>
-.button-com{
+.button-com {
   transition: all 0.2s;
   box-sizing: content-box;
-   border: 1px solid transparent;
+  border: 1px solid transparent;
 }
 
-.button-com:hover{
+.button-com:hover {
   opacity: 0.8;
 }
-
 </style>

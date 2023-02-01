@@ -1,40 +1,17 @@
 <template>
-  <div
-    class="myflexbox"
-    :style="views.style"
-    draggable="false"
-    :class="{ showBorder: edit, mask: views.focus && edit }"
-    @drop.stop="dropParent($event)"
-  >
-    <CenterButton
-      style="z-index: 100"
-      @click.stop="addFlexBox(views)"
-      v-if="views.focus && edit"
-    ></CenterButton>
+  <div class="myflexbox" :style="views.style" draggable="false" :class="{ showBorder: edit, mask: views.focus && edit }"
+    @drop.stop="dropParent($event)">
+    <CenterButton style="z-index: 100" @click.stop="addFlexBox(views)" v-if="views.focus && edit"></CenterButton>
     {{ views.props.content }}
     <!-- <DynamicDraw :currentCom="currentCom" :flexFocus="views.focus" :flexStyle="{justifyContent:views.style.justifyContent,alignItems:views.style.alignItems,flexDirection:views.style.flexDirection}" :views="views.views" :myStyle="views.views.style" :edit="edit"></DynamicDraw> -->
-    <component
-      v-for="(node, index) in views.children"
-      @click.stop="focusChild(index, key)"
-      @dragenter.stop="dragenterLight($event, node)"
-      @dragstart.stop="dragstart(views.children, node, index)"
-      :draggable="edit"
-      :style="node.style"
-      :class="{
+    <component v-for="(node, index) in views.children" @click.stop="focusChild(index, key)"
+      @dragenter.stop="dragenterLight($event, node)" @dragstart.stop="dragstart(views.children, node, index)"
+      :draggable="edit" :style="node.style" :class="{
         showBorder: edit,
         componenthover: edit,
         selected: node.focus == true && edit && currentCom == node,
-      }"
-      :comContent="node.comContent"
-      :views="node"
-      :myStyle="node.style"
-      :edit="edit"
-      :centerCom="centerCom"
-      :currentCom="currentCom"
-      :pattern="pattern"
-      :is="node.component"
-      :key="node.id"
-    >
+      }" :comContent="node.comContent" :views="node" :myStyle="node.style" :edit="edit" :centerCom="centerCom"
+      :currentCom="currentCom" :pattern="pattern" :is="node.component" :key="node.id">
     </component>
   </div>
 </template>
@@ -194,6 +171,7 @@ export default {
   display: flex !important;
   overflow: hidden !important;
 }
+
 .mask {
   position: absolute;
   left: 0;
@@ -210,6 +188,7 @@ export default {
   border: 1px dashed #06c;
   width: 100%;
 }
+
 .selected {
   /*hp修正点击组件因增加边框而偏移*/
   border: 1px solid rgb(238, 248, 131) !important;

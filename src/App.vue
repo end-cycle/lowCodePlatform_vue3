@@ -26,12 +26,14 @@ html {
   height: 100%;
   background: rgb(237, 239, 243);
 }
+
 .logo img {
   width: 130.8px;
   height: 36px;
   flex-shrink: 0;
   margin-left: 10px;
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

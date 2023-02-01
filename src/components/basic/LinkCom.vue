@@ -2,7 +2,7 @@
 
   <div class="link" :style="views.style" @click="linkClick">
     <a class="link-a" :href="'https://' + views.link" :style="views.linkStyle" ref="linkCom">{{
-        views.content
+      views.content
     }}
     </a>
   </div>
@@ -18,7 +18,7 @@ export default {
   ],
   data() {
     return {
-      
+
     }
   },
   methods: {
@@ -27,7 +27,7 @@ export default {
         e.preventDefault() //编辑模式下阻止跳转，点击时返回属性
       }
     },
-    
+
   },
   mounted() {
 
@@ -42,5 +42,4 @@ export default {
   box-sizing: content-box;
   border: 1px solid transparent;
 }
-
 </style>
