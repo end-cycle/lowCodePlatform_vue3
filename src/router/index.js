@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+
 const routes = [
   {
     path: '/',
@@ -13,6 +14,10 @@ const routes = [
     path: '/example/:num',
     component: () => import('@/views/release/SetExample.vue')
   },
+  {
+    path: '/test',
+    component: () => import('@/views/layout/Test.vue')
+  }
 ]
 
 const router = createRouter({
