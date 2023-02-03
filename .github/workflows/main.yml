@@ -25,10 +25,17 @@ jobs:
           CI: true
       # 部署到腾讯云服务器
       - name: Deploy to Server
-        uses: wlixcc/SFTP-Deploy-Action@v1.0 
-        with:  
-          username: 'root'   #ssh user name
-          server: "82.156.7.135" #引用之前创建好的secret
-          ssh_private_key: ${{ secrets.TOKEN }} #引用之前创建好的secret
-          local_path: './build/*'  # 对应我们项目build的文件夹路径
-          remote_path: '/www/wwwroot/dist'
+        uses: easingthemes/ssh-deploy@v2.0.7
+        env:
+          # SSH_PRIVATE_KEY为准备工作步骤三中生成密钥对里的私钥
+          SSH_PRIVATE_KEY: ${{ secrets.TOKEN }}
+          # 指定当前目录中要上传的内容
+          SOURCE: "dist/"
+          # 指定上传到部署机器的哪个目录下
+          TARGET: "/www/wwwroot/dist"
+          # 上传前指令，此处用于清空TARGET下的文件
+          ARGS: "-avzr --delete"
+          # REMOTE_HOST为机器的公网IP
+          REMOTE_HOST: "82.156.7.135"
+          # REMOTE_USER为登录机器时用到账号名
+          REMOTE_USER: "root"
