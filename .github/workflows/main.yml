@@ -22,12 +22,12 @@ jobs:
 
       - name: deploy file to test server
         if: github.ref == 'refs/heads/test' #对分支进行检测
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        uses: wlixcc/SFTP-Deploy-Action@v1.0 #调用SFTP进行文件传输
         with:
-          username: 'username'
-          server: "82.156.7.135" #测试服务器地址
-          ssh_private_key: ${{ secrets.TOKEN }}
-          local_path: './build/*'
+          username: 'root'
+          server:  ${{ secrets.SERVER_IP }} #测试服务器地址
+          ssh_private_key: ${{ secrets.TOKEN }} #SSH密钥
+          local_path: './dist/*' #项目打包地址
           remote_path: '/www/wwwroot/dist' #测试服务器部署路径
       
       - name: deploy file to prod server
@@ -35,7 +35,7 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
           username: 'root'
-          server: "82.156.7.135" #正式服务器地址
-          ssh_private_key: ${{ secrets.TOKEN }}
-          local_path: './dist/*'
+          server: ${{ secrets.SERVER_IP }} #正式服务器地址
+          ssh_private_key: ${{ secrets.TOKEN }} #SSH密钥
+          local_path: './dist/*' #项目打包地址
           remote_path: '/www/wwwroot/dist' #服务器部署路径
