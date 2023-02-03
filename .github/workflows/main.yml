@@ -37,5 +37,5 @@ jobs:
           username: 'root'
           server: "82.156.7.135" #正式服务器地址
           ssh_private_key: ${{ secrets.TOKEN }}
-          local_path: './*'
+          local_path: './dist/*'
           remote_path: '/www/wwwroot/dist' #服务器部署路径
