@@ -1,45 +1,41 @@
-# 一个workflow，名为deploy to tengxunyun
-name: deploy to tengxunyun
-
-on: # 此CI/CD触发时的事件
-  push: # 在代码提交时自动触发
+name: continuous deployment
+on: 
+  push:
     branches:
-      - master
+      - master #当master分支推送的时候,我们部署到生产服务器
+      - test #当test分支推送的时候,我们部署到测试服务器
 
-# 一个 CI/CD 的工作流有许多 jobs 组成，比如最典型的 job 是 lint，test，build。
-jobs: 
-  build: # 构建job
-    runs-on: ubuntu-latest # 跑workflow的服务器系统
-    container: 16.9.0
-    steps: # job的一系列动作
-      # 切换分支获取源码
-      - name: Checkout # step的名称，将会在 github action 的控制台中显示
-        # 选择一个action，可以理解为若干 steps.run，有利于代码复用
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    
+    name: build&deploy
+    steps:
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+
+      - name: Install Dependencies #install
+        run: npm run install
+     
+      - name: build  #build
+        run:  npm run build
+
+      - name: deploy file to test server
+        if: github.ref == 'refs/heads/test' #对分支进行检测
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          node-version: "16.9.0"
-      # 运行命令，npm install && npm run build
-      - name: npm install and build
-        run: |
-          npm install
-          npm run build
-        env:
-          CI: true
-      # 部署到腾讯云服务器
-      - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@v2.0.7
-        env:
-          # SSH_PRIVATE_KEY为准备工作步骤三中生成密钥对里的私钥
-          SSH_PRIVATE_KEY: ${{ secrets.TOKEN }}
-          # 指定当前目录中要上传的内容
-          SOURCE: "dist/"
-          # 指定上传到部署机器的哪个目录下
-          TARGET: "/www/wwwroot/dist"
-          # 上传前指令，此处用于清空TARGET下的文件
-          ARGS: "-avzr --delete"
-          # REMOTE_HOST为机器的公网IP
-          REMOTE_HOST: "82.156.7.135"
-          # REMOTE_USER为登录机器时用到账号名
-          REMOTE_USER: "root"
+          username: 'username'
+          server: "82.156.7.135" #测试服务器地址
+          ssh_private_key: ${{ secrets.TOKEN }}
+          local_path: './build/*'
+          remote_path: '/www/wwwroot/dist' #测试服务器部署路径
+      
+      - name: deploy file to prod server
+        if: github.ref == 'refs/heads/master' #对分支进行检测
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: 'root'
+          server: "82.156.7.135" #正式服务器地址
+          ssh_private_key: ${{ secrets.TOKEN }}
+          local_path: './build/*'
+          remote_path: '/www/wwwroot/dist' #服务器部署路径
