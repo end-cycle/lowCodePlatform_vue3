@@ -47,7 +47,11 @@ export function exportHtmlHandle(views, isVue) {
     let res = jsonToHtml['getMainStr'](bodyRes, styleStr, isVue);
     let blob = new Blob([res], { type: '' })
     let fileName = isVue ? 'page.vue' : 'page.html'
-    FileSaver.saveAs(blob, fileName)
+    // 测试环境不输出blob文件
+    process.env.NODE_ENV != 'test' ? FileSaver.saveAs(blob, fileName) : null;
+    console.log(process.env);
+    // 返回值供测试使用
+    return res;
 }
 
 let set = new Set(['FlexBox', 'ButtonCom', 'TextCom', 'VideoCom', 'LinkCom', 'ImgCom'])

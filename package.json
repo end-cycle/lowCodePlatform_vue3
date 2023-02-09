@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test": "jest",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
@@ -26,6 +27,8 @@
     "@vue/compiler-sfc": "^3.0.0",
     "eslint": "^8.27.0",
     "eslint-plugin-vue": "^9.7.0",
+    "jest": "^29.4.2",
+    "jest-environment-jsdom": "^29.4.2",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2"
   }

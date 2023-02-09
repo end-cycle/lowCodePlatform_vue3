@@ -1,4 +1,4 @@
-import HtmlData from '@/data/htmlData.js'
+import HtmlData from '../data/htmlData.js'
 
 function strToDom(str) {
     var temp = document.createElement('div')
