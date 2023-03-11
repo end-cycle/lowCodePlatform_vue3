@@ -240,10 +240,8 @@ export default {
         if (this.judgeTwoValueIsEqual(newValue, oldVal)) return;
         if (this.step == 1) {
           //当为初始状态时
-          console.log("setItem first", this.step);
           sessionStorage.setItem(String(this.step), JSON.stringify([newValue]));
         } else {
-          console.log("setItem", this.step);
           sessionStorage.setItem(String(this.step), JSON.stringify(newValue));
         }
         //阶段+1
