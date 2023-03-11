@@ -43,8 +43,8 @@ export default {
     return {
       menu,
       searchRes: [],
-      isShow: false,
-      isFixed: true,
+      isShow: false,//控制Left组件是否显示
+      isFixed: true,//控制Left组件是否固定
       searchKey: "",
     };
   },
@@ -58,7 +58,7 @@ export default {
     },
     dragleave() {
       //当组件拖拽出去后隐藏左侧浮窗
-      if (!this.isFixed) this.closeMenu();
+      if (this.isShow) this.closeMenu();
     },
     showMenu() {
       //左侧浮窗隐藏控制
