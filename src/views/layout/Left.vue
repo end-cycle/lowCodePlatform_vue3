@@ -55,10 +55,12 @@ export default {
       this.$bus.emit("clearFocus");
       e.dataTransfer.setData("comOffsetY", e.offsetY); //8.18hp修改预先存储鼠标相对组件位置
       e.dataTransfer.setData("comOffsetX", e.offsetX);
+      // console.log('dragstart', e);
     },
-    dragleave() {
+    dragleave(e) {
       //当组件拖拽出去后隐藏左侧浮窗
       if (this.isShow) this.closeMenu();
+      // console.log('dragleave', e);
     },
     showMenu() {
       //左侧浮窗隐藏控制
