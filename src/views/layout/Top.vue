@@ -16,20 +16,20 @@
       <div class="top-right-operator">
         <img :src="require('@/' + 'assets/ctrl-z.png')" class="show" alt=""
           :style="centerStep !== 1 ? '' : 'opacity:0.2;'" @click="backOff" />
-        <img :src="require('@/' + 'assets/ctrl-z.png')" class="show restore" :style="hasMore() ? '' : 'opacity:0.2;'"
+        <img :src="require('@/' + 'assets/ctrl-z.png')" class="show restore" :style="{ opacity: opacityValue }"
           @click="forward" alt="" />
       </div>
       <div class="top-right-function">
         <el-button size="small" type="danger" v-if="hasSelectEvent" @click="deleteEvent">删除</el-button>
         <el-button border size="small" @click="absolute = !absolute" :type="absolute ? 'info' : ''">{{
-          absolute? "绝对定位"
-            : "静态定位"
+          absolute ? "绝对定位"
+          : "静态定位"
         }}</el-button>
         <el-button size="small" @click="save">保 存</el-button>
         <el-button size="small" @click="$refs.file.click()">导入 Json</el-button>
         <el-button size="small" @click="reset" type="primary">重 置</el-button>
         <el-button size="small" @click="switchState" type="primary">{{
-          edit? "预览": "编辑"
+          edit ? "预览" : "编辑"
         }}</el-button>
         <el-button size="small" @click="release" type="primary">发 布</el-button>
       </div>
@@ -49,6 +49,7 @@ export default {
       centerStep: 1,
       hasSelectEvent: false,
       absolute: false,
+      opacityValue: '',
     };
   },
   mounted() {
@@ -73,15 +74,6 @@ export default {
     });
   },
   methods: {
-    //判断是否还有下一阶段
-    hasMore() {
-      if (sessionStorage.getItem(String(this.centerStep + 1)) == null) {
-        console.log("hasMore", sessionStorage.getItem(String(this.centerStep + 1)));
-        return false;
-      } else {
-        return true;
-      }
-    },
     reset() {
       this.$bus.emit("reset");
     },
@@ -138,6 +130,17 @@ export default {
     },
   },
   watch: {
+    centerStep: {
+      immediate: true,
+      handler() {
+        if (sessionStorage.getItem(String(this.centerStep + 1)) == null) {
+          // console.log("hasMore", sessionStorage.getItem(String(this.centerStep + 1)));
+          this.opacityValue = 0.2;
+        } else {
+          this.opacityValue = '';
+        }
+      }
+    },
     absolute: {
       immediate: true,
       handler(newVal) {
