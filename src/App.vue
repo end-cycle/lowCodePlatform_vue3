@@ -12,6 +12,7 @@ export default {
     }
   },
   mounted() {
+    console.log('如果生产环境控制台显示该语句则表明console未清除');
     document.title = '低代码开发平台'
   }
 }
