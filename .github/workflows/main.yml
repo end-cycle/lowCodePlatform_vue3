@@ -12,7 +12,7 @@ jobs:
     name: build&deploy
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install Dependencies #install
         run: npm install
