@@ -14,6 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: use Node.js 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.19.0
+
       - name: Install Dependencies #install
         run: npm install
 
