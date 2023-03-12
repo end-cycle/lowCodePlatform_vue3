@@ -54,13 +54,14 @@ export default {
   },
   mounted() {
     let self = this;
-    this.$nextTick(function () {
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && self.edit === false) {
-          self.$bus.emit("switchState");
-        }
-      });
-    });
+    document.onkeydown = function (event) {
+      let key = window.event.keyCode;
+      console.log();
+      if (event.key && self.edit === false) {
+        self.$bus.emit("switchState");
+      }
+    }
+
     //获取画布区的阶段
     this.$bus.on("getStep", (step) => {
       this.centerStep = step;
@@ -72,6 +73,9 @@ export default {
     this.$bus.on("switchState", () => {
       this.edit = !this.edit;
     });
+  },
+  destroyed() {
+    window.onkeydown = null;
   },
   methods: {
     reset() {
