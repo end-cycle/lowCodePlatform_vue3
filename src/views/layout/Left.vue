@@ -20,7 +20,7 @@
       <div class="baseEleBox">
         <div v-for="item in searchRes[0]" draggable="true" @dragstart="dragstart" :key="item.name" class="comBox"
           :id="item.flag">
-          <img class="img-show" draggable="false" :src="require('@/' + item.icon)" alt="图片失踪" />
+          <img class="img-show" draggable="false" v-lazy="require('@/' + item.icon)" alt="图片失踪" />
           <div class="com-name">{{ item.name }}</div>
         </div>
       </div>
@@ -28,7 +28,7 @@
       <div class="baseEleBox">
         <div v-for="item in searchRes[1]" draggable="true" @dragstart="dragstart" :key="item.name" class="comBox"
           :id="item.flag">
-          <img class="img-show" draggable="false" :src="require('@/' + item.icon)" alt="图片失踪" />
+          <img class="img-show" draggable="false" v-lazy="require('@/' + item.icon)" alt="图片失踪" />
           <div class="com-name">{{ item.name }}</div>
         </div>
       </div>

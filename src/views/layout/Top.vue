@@ -6,17 +6,17 @@
     </div>
     <div class="top-center">
       <div class="top-center-pc" :class="{ active: isPC }" @click="toPC">
-        <img :src="require('@/' + 'assets/pc.png')" class="" />
+        <img v-lazy="require('@/' + 'assets/pc.png')" class="" />
       </div>
       <div class="top-center-phone" :class="{ active: !isPC }" @click="toPhone">
-        <img :src="require('@/' + 'assets/phone.png')" />
+        <img v-lazy="require('@/' + 'assets/phone.png')" />
       </div>
     </div>
     <div class="top-right">
       <div class="top-right-operator">
-        <img :src="require('@/' + 'assets/ctrl-z.png')" class="show" alt=""
+        <img v-lazy="require('@/' + 'assets/ctrl-z.png')" class="show" alt=""
           :style="centerStep !== 1 ? '' : 'opacity:0.2;'" @click="backOff" />
-        <img :src="require('@/' + 'assets/ctrl-z.png')" class="show restore" :style="{ opacity: opacityValue }"
+        <img v-lazy="require('@/' + 'assets/ctrl-z.png')" class="show restore" :style="{ opacity: opacityValue }"
           @click="forward" alt="" />
       </div>
       <div class="top-right-function">

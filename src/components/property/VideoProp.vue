@@ -22,7 +22,7 @@
       <div class="label">封面</div>
       <el-upload class="avatar-uploader" action="http://82.156.7.135:3001/upload" :show-file-list="false"
         :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-        <img v-if="views.poster" :src="views.poster" class="avatar">
+        <img v-if="views.poster" v-lazy="views.poster" class="avatar">
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         <template #tip>
           <div class="el-upload__tip" style="margin:0px;">

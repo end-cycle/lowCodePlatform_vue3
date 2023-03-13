@@ -6,6 +6,7 @@ import videojs from 'video.js'
 import Components from '@/components'
 import mitt from 'mitt'
 import axios from 'axios'
+import VueLazyload from 'vue-lazyload'
 
 const app = createApp(App)
 import ElementPlus from 'element-plus'
@@ -19,4 +20,5 @@ app.use(ElementPlus)
    .use(Components)
    .use(router)
    .use(store)
+   .use(VueLazyload)
    .mount('#app')

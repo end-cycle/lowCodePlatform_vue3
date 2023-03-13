@@ -1,7 +1,7 @@
 <template>
   <div class="right">
     <div class="right-describ">
-      <img :src="require('@/' + 'assets/page.png')" />页面
+      <img v-lazy="require('@/' + 'assets/page.png')" />页面
     </div>
     <div class="right-choices">
       <div class="right-choices-one" @click="isMeta = true" :class="{ active: isMeta }">属性</div>
@@ -21,7 +21,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 
