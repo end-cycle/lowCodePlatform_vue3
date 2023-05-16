@@ -116,6 +116,7 @@ export default {
     // 导入json
     importJSON() {
       const file = document.getElementById("file").files[0];
+      this.$refs.file.value = '';
       const reader = new FileReader();
       reader.readAsText(file);
       let _this = this;
