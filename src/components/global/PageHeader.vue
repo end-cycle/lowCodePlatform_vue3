@@ -1,13 +1,3 @@
-<!--
- * @Author: end-cycle 2991205548@qq.com
- * @Date: 2022-09-05 11:46:30
- * @LastEditors: end-cycle 2991205548@qq.com
- * @LastEditTime: 2023-02-02 00:23:16
- * @FilePath: \lowcode-plantform-master\src\components\global\PageHeader.vue
- * @Description: 
- * 
- * Copyright (c) 2022 by end-cycle 2991205548@qq.com, All Rights Reserved. 
--->
 <template>
   <div>
     <header class="header">
