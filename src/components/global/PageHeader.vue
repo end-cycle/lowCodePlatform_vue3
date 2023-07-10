@@ -55,7 +55,6 @@ export default {
 .logo-text {
   width: 80px;
   height: 40px;
-  /* background-color: black; */
   font-size: 14px;
   font-weight: 700;
   line-height: 20px;
