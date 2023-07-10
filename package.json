@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "export NODE_OPTIONS=–openssl-legacy-provider;  vue-cli-service build"
   },
   "dependencies": {
