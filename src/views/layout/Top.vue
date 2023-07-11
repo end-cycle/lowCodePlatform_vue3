@@ -1,9 +1,5 @@
 <template>
   <div class="top">
-    <div class="top-left">
-      <img class="top-left-logo" />
-      <!-- <div class="top-left-name">BAT man</div> -->
-    </div>
     <div class="top-center">
       <div class="top-center-pc" :class="{ active: isPC }" @click="toPC">
         <img v-lazy="require('@/' + 'assets/pc.png')" class="" />
